@@ -6,13 +6,15 @@
 #include "backprop.h"
 #include "omp.h"
 
-extern char *strcpy();
-extern void exit();
+extern char *strcpy(char *destination, const char *source);
+
+extern void exit(int status);
+
 void bpnn_train_cuda(BPNN *net, float *eo, float *eh);
 
 int layer_size = 0;
 
-void backprop_face() {
+void backprop_face(void) {
   BPNN *net;
   float out_err, hid_err;
   net = bpnn_create(layer_size, 16, 1);  // (16, 1 can not be changed)
@@ -26,9 +28,7 @@ void backprop_face() {
   printf("Training done\n");
 }
 
-int setup(argc, argv) int argc;
-char *argv[];
-{
+int setup(int argc, char *argv[]) {
   int seed;
 
   if (argc != 2) {

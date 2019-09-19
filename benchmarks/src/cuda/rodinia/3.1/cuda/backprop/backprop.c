@@ -30,10 +30,10 @@
   }
 
 /*** Return random number between 0.0 and 1.0 ***/
-float drnd() { return ((float)rand() / (float)BIGRND); }
+float drnd(void) { return ((float)rand() / (float)BIGRND); }
 
 /*** Return random number between -1.0 and 1.0 ***/
-float dpn1() { return ((drnd() * 2.0) - 1.0); }
+float dpn1(void) { return ((drnd() * 2.0) - 1.0); }
 
 /*** The squashing function.  Currently, it's a sigmoid. ***/
 
@@ -41,8 +41,7 @@ float squash(float x) { return (1.0 / (1.0 + exp(-x))); }
 
 /*** Allocate 1d array of floats ***/
 
-float *alloc_1d_dbl(n) int n;
-{
+float *alloc_1d_dbl(int n) {
   float *new;
 
   new = (float *)malloc((unsigned)(n * sizeof(float)));
@@ -55,8 +54,7 @@ float *alloc_1d_dbl(n) int n;
 
 /*** Allocate 2d array of floats ***/
 
-float **alloc_2d_dbl(m, n) int m, n;
-{
+float **alloc_2d_dbl(int m, int n) {
   int i;
   float **new;
 
