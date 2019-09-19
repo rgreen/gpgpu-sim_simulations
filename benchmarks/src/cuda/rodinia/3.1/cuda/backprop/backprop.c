@@ -37,9 +37,7 @@ float dpn1() { return ((drnd() * 2.0) - 1.0); }
 
 /*** The squashing function.  Currently, it's a sigmoid. ***/
 
-float squash(float x) {
-  return (1.0 / (1.0 + exp(-x)));
-}
+float squash(float x) { return (1.0 / (1.0 + exp(-x))); }
 
 /*** Allocate 1d array of floats ***/
 
@@ -176,8 +174,7 @@ void bpnn_free(BPNN *net) {
      error computations, etc).
 ***/
 
-BPNN *bpnn_create(n_in, n_hidden, n_out) int n_in, n_hidden, n_out;
-{
+BPNN *bpnn_create(int n_in, int n_hidden, int n_out) {
   BPNN *newnet;
 
   newnet = bpnn_internal_create(n_in, n_hidden, n_out);
@@ -259,8 +256,8 @@ void bpnn_adjust_weights(float *delta, int ndelta, float *ly, int nly,
 
 #ifdef OPEN
   omp_set_num_threads(NUM_THREAD);
-#pragma omp parallel for shared(oldw, w, delta) private( \
-    j, k, new_dw) firstprivate(ndelta, nly, momentum)
+#pragma omp parallel for shared(oldw, w, delta) private(j, k, new_dw) \
+    firstprivate(ndelta, nly, momentum)
 #endif
   for (j = 1; j <= ndelta; j++) {
     for (k = 0; k <= nly; k++) {
