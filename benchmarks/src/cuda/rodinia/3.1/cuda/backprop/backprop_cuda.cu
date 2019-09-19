@@ -129,7 +129,7 @@ extern "C" void bpnn_train_cuda(BPNN *net, float *eo, float *eh) {
 
   for (int j = 1; j <= hid; j++) {
     sum = 0.0;
-    for (int k = 0; k < num_blocks; k++) {
+    for (unsigned k = 0; k < num_blocks; k++) {
       sum += partial_sum[k * hid + j - 1];
     }
     sum += net->input_weights[0][j];

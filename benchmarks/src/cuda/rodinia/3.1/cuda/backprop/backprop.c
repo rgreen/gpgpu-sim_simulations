@@ -38,7 +38,6 @@ float dpn1() { return ((drnd() * 2.0) - 1.0); }
 /*** The squashing function.  Currently, it's a sigmoid. ***/
 
 float squash(float x) {
-  float m;
   return (1.0 / (1.0 + exp(-x)));
 }
 
