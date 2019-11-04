@@ -189,10 +189,11 @@ for logfile in parsed_logfiles:
                 continue
 
             num_jobs += 1
+            torquefile_base = re.sub(r".*\.(gpgpu-sim_git-commit.*)", r"\1", jobname)
             errfile = os.path.join(output_dir, os.path.basename(app) + "-" + args + "." + \
-                re.sub(r".*\.(libcudart.*)", r"\1", jobname) + "." + "e" + jobId)
+                torquefile_base + "." + "e" + jobId)
             outfile = os.path.join(output_dir, os.path.basename(app) + "-" + args + "." + \
-                re.sub(r".*\.(libcudart.*)", r"\1", jobname) + "." + "o" + jobId)
+                torquefile_base + "." + "o" + jobId)
 
             status_string = ""
             additional_stats = ""

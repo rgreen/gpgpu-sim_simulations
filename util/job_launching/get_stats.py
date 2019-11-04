@@ -185,8 +185,9 @@ for idx, app_and_args in enumerate(apps_and_args):
 
         if config + app_and_args in specific_jobIds:
             jobId,jobname = specific_jobIds[ config + app_and_args ]
+            torque_submname = re.sub(r".*\.(gpgpu-sim_git-commit.*)", r"\1", jobname)
             outfile = os.path.join(output_dir, exes_and_args[idx].replace("/", "-") + "." +\
-               re.sub(r".*\.(libcudart.*)", r"\1", jobname) + "." + "o" + jobId)
+               torque_submname + "." + "o" + jobId)
         else:
             all_outfiles = [os.path.join(output_dir, f) \
                            for f in os.listdir(output_dir) if(re.match(r'.*\.o[0-9]+',f))]
